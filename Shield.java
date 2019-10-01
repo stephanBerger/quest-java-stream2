@@ -1,12 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Shield {
 
-    public static void main(String[] args) {
+   
+	public static void main(String[] args) {
 
         List<String> names = new ArrayList<>();
         names.add("Phil Coulson");
@@ -17,14 +16,19 @@ public class Shield {
 
         // TODO 1 : map names to agents list
         List<Agent> agents = new ArrayList<>();
-        agents = names.stream().map(new Function<String, Agent>(){
-					@Override
-					public Agent apply(String t) {
-						String[] name = t.split(" ");
-    					return new Agent(name[0], name[1]);
-						}
-					})
-					.collect(Collectors.toList());
+        //version beau gosse
+        agents= names.stream()
+        		.map(item -> new Agent(item.split(" ")[0],item.split(" ")[1]))
+        		.collect(Collectors.toList());
+        //version quête
+//      agents = names.stream().map(new Function<String, Agent>(){
+//					@Override
+//					public Agent apply(String item) {
+//						String[] name = item.split(" ");
+//    					return new Agent(name[0], name[1]);
+//						}
+//					})
+//					.collect(Collectors.toList());
         
         showAgents(agents);
     }
