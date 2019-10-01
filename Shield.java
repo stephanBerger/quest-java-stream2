@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Shield {
 
@@ -14,7 +17,15 @@ public class Shield {
 
         // TODO 1 : map names to agents list
         List<Agent> agents = new ArrayList<>();
-
+        agents = names.stream().map(new Function<String, Agent>(){
+					@Override
+					public Agent apply(String t) {
+						String[] name = t.split(" ");
+    					return new Agent(name[0], name[1]);
+						}
+					})
+					.collect(Collectors.toList());
+        
         showAgents(agents);
     }
 
